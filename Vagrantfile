@@ -4,6 +4,7 @@
 Vagrant::Config.run do |config|
   config.vm.box = 'centos-62-64-puppet'
   config.vm.box_url = 'http://packages.vstone.eu/vagrant-boxes/centos/6.2/centos-6.2-64bit-puppet-vbox.4.1.12.box'
+  # config.vm.boot_mode = :gui # uncomment if you get stuck on "Waiting for VM to boot"
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
