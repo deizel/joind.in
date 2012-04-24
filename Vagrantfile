@@ -14,6 +14,13 @@ Vagrant::Config.run do |config|
   # folder, and the third is the path on the host to the actual folder.
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
 
+  # Pass custom arguments to VBoxManage before booting VM
+  config.vm.customize [
+    'modifyvm', :id, '--chipset', 'ich9', # solves kernel panic issue on some host machines
+    # '--uartmode1', 'file', 'C:\\base6-console.log' # uncomment to change log location on Windows
+  ]
+
+  # Pass installation procedure over to Puppet (see `puppet/manifests/joindin.pp`)
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "puppet/manifests"
     puppet.module_path = "puppet/modules"
