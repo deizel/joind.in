@@ -27,13 +27,18 @@ apache::vhost { $host:
 # Install PHP modules
 php::module { 'mysql': }
 
-file { 'replace-php-ini':
-  path    => '/etc/php.ini',
-  owner   => 'root',
-  group   => 'root',
+# Set development values to php.ini
+augeas{ 'set-php-ini-values':
+  context => '/files/etc/php.ini',
+  changes => [
+    'set PHP/error_reporting "E_ALL | E_STRICT"',
+    'set PHP/display_errors On',
+    'set PHP/display_startup_errors On',
+    'set PHP/html_errors On',
+    'set Date/date.timezone Europe/London',
+  ],
   require => Package['php'],
   notify  => Service['apache'],
-  source  => '/vagrant/puppet/templates/php.ini.erb',
 }
 
 # Create and grant privileges to joindin database
