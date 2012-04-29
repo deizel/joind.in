@@ -14,10 +14,8 @@ You can set up a development virtual machine running joind.in by following these
    - VirtualBox (https://www.virtualbox.org/)
    - Ruby (http://www.ruby-lang.org/)
    - Vagrant (http://vagrantup.com/)
-2. Clone repository to any location and fetch required submodules (containing Puppet manifests).
-   > git clone https://github.com/deizel/joind.in && cd joind.in
-   > git submodule init
-   > git submodule update
+2. Clone repository to any location and fetch required Puppet submodules (note the --recursive flag).
+   > git clone --recursive https://github.com/deizel/joind.in && cd joind.in
 3. Start the process by running Vagrant.
    > vagrant up
 4. Add hostname to /etc/hosts.
